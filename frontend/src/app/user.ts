@@ -1,3 +1,5 @@
+import {Role} from "./role";
+
 export class User {
   public steamid: string;
 
@@ -58,4 +60,6 @@ export class User {
 
   // TODO: Date
   public updated_at: string;
+
+  public roles: Role[];
 }

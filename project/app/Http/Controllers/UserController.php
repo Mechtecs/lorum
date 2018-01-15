@@ -26,7 +26,8 @@ class UserController extends Controller
       if (Auth::guest()) {
         return ["loggedIn" => false];
       } else {
-        return ["loggedIn" => true, "userProfile" => Auth::user()];
+          $user = Auth::user()->load("roles.perms");
+          return ["loggedIn" => true, "userProfile" => $user];
       }
     }
 

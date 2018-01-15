@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Invisnik\LaravelSteamAuth\SteamAuth;
 use App\Models\User;
 use Auth;
@@ -72,6 +73,7 @@ class AuthController extends Controller {
     protected function findOrNewUser($info)
     {
         $user = User::where('steamid', $info->steamID64)->first();
+        $newUser = false;
 
         $info = $info->toArray();
 
@@ -88,6 +90,7 @@ class AuthController extends Controller {
           $user->steamid = $steamid;
           if ($timecreated)
             $user->timecreated = $timecreated;
+          $newUser = true;
         }
 
         if ($lastlogoff)
@@ -98,6 +101,11 @@ class AuthController extends Controller {
         }
 
         $user->saveOrFail();
+
+        if ($newUser && User::count() === 1) {
+            $adminRole = Role::whereName('admin')->first();
+            $user->attachRole($adminRole);
+        }
 
         return $user;
     }
