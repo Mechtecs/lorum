@@ -1,20 +1,37 @@
 <div>
-  <ul id="navbar-user-dropdown" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
-  </ul>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Lorum-2.0</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a routerLink="/test">Components</a></li>
-        <li *ngIf="!authService.loggedIn"><a href="/api/auth/steam">Login</a></li>
-        <li *ngIf="authService.loggedIn" ngClass="dropdown-trigger" data-target="navbar-user-dropdown"><a>{{this.authService.user.personaname}}</a></li>
-        <li *ngIf="authService.loggedIn" (click)="this.authService.logout()"><a>Logout</a></li>
-      </ul>
-    </div>
-  </nav>
+  <mz-dropdown
+    [id]="'dropdown-userprofile'"
+    [align]="'left'"
+    [belowOrigin]="true"
+    [constrainWidth]="true"
+    [dropdownButtonId]="'dropdown-userprofile-btn'"
+    [gutter]="true"
+    [inDuration]="300"
+    [outDuration]="300"
+    [stopPropagation]="true"
+    *ngIf="authService.loggedIn"
+  >
+    <mz-dropdown-item><a>One</a></mz-dropdown-item>
+    <mz-dropdown-item><a>Two</a></mz-dropdown-item>
+    <mz-dropdown-divider></mz-dropdown-divider>
+    <mz-dropdown-item (click)="this.authService.logout()"><a>Logout</a></mz-dropdown-item>
+  </mz-dropdown>
+
+  <mz-navbar>
+    <a href="#" class="brand-logo">Lorum-2.0</a>
+    <mz-navbar-item-container [align]="'right'">
+      <mz-navbar-item>
+        <a href="sass.html">Sass</a>
+      </mz-navbar-item>
+      <mz-navbar-item>
+        <a routerLink="/test">Components</a>
+      </mz-navbar-item>
+      <mz-navbar-item *ngIf="!authService.loggedIn">
+        <a href="/api/auth/steam">Login</a>
+      </mz-navbar-item>
+      <mz-navbar-item *ngIf="authService.loggedIn" ngClass="dropdown-trigger" data-target="navbar-user-dropdown">
+        <a mz-button id="dropdown-userprofile-btn">{{this.authService.user.personaname}}</a>
+      </mz-navbar-item>
+    </mz-navbar-item-container>
+  </mz-navbar>
 </div>
