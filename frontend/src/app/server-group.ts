@@ -1,3 +1,5 @@
+import {Server} from "./server";
+
 export class ServerGroup {
   public id: number;
   public active: boolean;
@@ -6,4 +8,7 @@ export class ServerGroup {
   public name: string;
   public created_at: Date;
   public updated_at: Date;
+
+  // Relationships
+  public servers: Server[];
 }
