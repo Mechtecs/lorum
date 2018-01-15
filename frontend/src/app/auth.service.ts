@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    window.open("/api/auth/logout");
+    window.open("/api/auth/logout", "_self");
   }
 
 }
