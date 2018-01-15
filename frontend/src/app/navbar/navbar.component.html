@@ -2,13 +2,12 @@
   <mz-dropdown
     [id]="'dropdown-userprofile'"
     [align]="'left'"
-    [belowOrigin]="true"
     [constrainWidth]="true"
     [dropdownButtonId]="'dropdown-userprofile-btn'"
-    [gutter]="true"
     [inDuration]="300"
     [outDuration]="300"
     [stopPropagation]="true"
+    [belowOrigin]="true"
     *ngIf="authService.loggedIn"
   >
     <mz-dropdown-item><a>One</a></mz-dropdown-item>
@@ -30,7 +29,7 @@
         <a href="/api/auth/steam">Login</a>
       </mz-navbar-item>
       <mz-navbar-item *ngIf="authService.loggedIn" ngClass="dropdown-trigger" data-target="navbar-user-dropdown">
-        <a mz-button id="dropdown-userprofile-btn">{{this.authService.user.personaname}}</a>
+        <a id="dropdown-userprofile-btn">{{this.authService.user.personaname}}</a>
       </mz-navbar-item>
     </mz-navbar-item-container>
   </mz-navbar>
