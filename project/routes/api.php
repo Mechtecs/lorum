@@ -39,7 +39,7 @@ Route::group(['prefix' => 'server'], function () {
 });
 
 // CRUD: ServerGroupController
-Route::group(['prefix' => 'server'], function () {
+Route::group(['prefix' => 'servergroup'], function () {
     Route::get('/', "ServerGroupController@index");
     Route::get('/{server}', "ServerGroupController@get");
 
