@@ -1,0 +1,12 @@
+<div>
+  <h2>Server Groups</h2>
+  <app-server-group-edit *ngFor="let group of serverService.serverGroups; let i = index" [(serverGroup)]="serverService.serverGroups[i]" (delete)="this.deleteServerGroup(group)"></app-server-group-edit>
+  <div ngClass="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a mz-button [float]="true" [large]="true" ngClass="red" (click)="this.addServerGroup()">
+      <i mz-icon-mdi [align]="'right'" [icon]="'plus'" [size]="'large'"></i>
+    </a>
+    <ul>
+      <li (click)="this.persist()"><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i mz-icon-mdi [align]="'right'" [icon]="'content-save'"></i> </a></li>
+    </ul>
+  </div>
+</div>

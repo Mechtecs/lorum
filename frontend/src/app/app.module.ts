@@ -12,16 +12,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import {MzButtonModule, MzInputModule, MzDropdownModule, MzNavbarModule} from 'ng2-materialize';
+import {
+  MzButtonModule, MzInputModule, MzDropdownModule, MzNavbarModule, MzSidenavModule,
+  MzIconModule, MzIconMdiModule, MzValidationModule, MzCheckboxModule, MzCollapsibleModule, MzCardModule
+} from 'ng2-materialize';
 
 // Services
 import { AuthService } from './auth.service';
+import {ServerService} from "./server.service";
+import { ServerSettingsPageComponent } from './server-settings-page/server-settings-page.component';
+import { ServerGroupEditComponent } from './server-group-edit/server-group-edit.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ServerGroupComponent } from './server-group/server-group.component';
+import { ServerGroupServerRowComponent } from './server-group-server-row/server-group-server-row.component';
+import { ServerGroupServerRowEditComponent } from './server-group-server-row-edit/server-group-server-row-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    ServerSettingsPageComponent,
+    ServerGroupEditComponent,
+    ServerGroupComponent,
+    ServerGroupServerRowComponent,
+    ServerGroupServerRowEditComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +47,18 @@ import { AuthService } from './auth.service';
     MzButtonModule,
     MzInputModule,
     MzDropdownModule,
-    MzNavbarModule
+    MzNavbarModule,
+    MzSidenavModule,
+    MzIconModule,
+    MzIconMdiModule,
+    MzValidationModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MzCheckboxModule,
+    MzCollapsibleModule,
+    MzCardModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

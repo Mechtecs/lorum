@@ -1,3 +1,11 @@
-<p>
-  Awesome game servers
-</p>
+<div>
+  <ng-container *ngFor="let serverGroup of serverService.serverGroups">
+    <app-server-group [serverGroup]="serverGroup" *ngIf="serverGroup.active && serverGroup.servers.length > 0"></app-server-group>
+  </ng-container>
+  <div ngClass="fixed-action-btn" style="bottom: 45px; right: 24px;"
+       *ngIf="authService.loggedIn && authService.user.roleNames.indexOf('admin') > -1">
+    <a mz-button [float]="true" [large]="true" ngClass="red" routerLink="/servers/settings">
+      <i mz-icon-mdi [align]="'right'" [icon]="'settings'" [size]="'medium'"></i>
+    </a>
+  </div>
+</div>

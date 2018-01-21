@@ -1,0 +1,8 @@
+<mz-card>
+  <mz-card-title>{{serverGroup.name}}</mz-card-title>
+  <mz-card-content>
+    <mz-collapsible>
+      <app-server-group-server-row *ngFor="let serverRow of serverGroup.servers"></app-server-group-server-row>
+    </mz-collapsible>
+  </mz-card-content>
+</mz-card>

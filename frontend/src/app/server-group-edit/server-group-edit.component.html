@@ -1,0 +1,65 @@
+<form novalidate>
+  <div ngClass="section">
+    <h6 *ngIf="serverGroup.id < 1">New Server Group</h6>
+    <h6 *ngIf="serverGroup.id > 0">Server Group (ID: {{serverGroup.id}})</h6>
+    <div class="row">
+      <mz-input-container ngClass="col s10 m8">
+        <input mz-input required
+               id="groupName"
+               name="groupName"
+               type="text"
+               [label]="'Name'"
+               [(ngModel)]="serverGroup.name"
+               (change)="this.emitChanges()"
+        />
+      </mz-input-container>
+      <mz-input-container ngClass="col s2 m4">
+        <input mz-input required
+               id="groupOrder"
+               name="groupOrder"
+               type="number"
+               [min]="0"
+               [max]="255"
+               [label]="'Order'"
+               [(ngModel)]="serverGroup.order"
+               (change)="this.emitChanges()"
+        />
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-checkbox-container class="col s2">
+        <input mz-checkbox
+               id="groupActive"
+               name="groupActive"
+               type="checkbox"
+               [label]="'Active'"
+               [(ngModel)]="serverGroup.active"
+               (change)="this.emitChanges()"
+        >
+      </mz-checkbox-container>
+      <mz-checkbox-container class="col s2">
+        <input mz-checkbox
+               id="groupSpoilers"
+               name="groupSpoilers"
+               type="checkbox"
+               [label]="'Spoilers'"
+               [(ngModel)]="serverGroup.spoilers"
+               (change)="this.emitChanges()"
+        >
+      </mz-checkbox-container>
+      <div class="col s1">
+        <a mz-button [float]="true" (click)="this.delete()" type="button">
+          <i mz-icon-mdi [align]="'right'" [icon]="'delete'"></i>
+        </a>
+      </div>
+      <div class="col s1">
+        <a mz-button [float]="true" (click)="this.addServer()" type="button">
+          <i mz-icon-mdi [align]="'right'" [icon]="'plus'"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <app-server-group-server-row-edit></app-server-group-server-row-edit>
+    </div>
+  </div>
+</form>

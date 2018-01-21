@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\ServerGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServerGroupController extends Controller
 {
@@ -14,7 +16,11 @@ class ServerGroupController extends Controller
      */
     public function index()
     {
-        return ServerGroup::all()->sortBy('order')->load("servers");
+        if (!Auth::guest() && Auth::user()->hasRole("admin")) {
+            return ServerGroup::all()->sortBy('order')->load("servers");
+        } else {
+            return ServerGroup::whereActive(true)->get()->sortBy('order')->load("servers");
+        }
     }
 
     /**

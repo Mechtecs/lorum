@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Server;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServerController extends Controller
 {
@@ -14,7 +16,11 @@ class ServerController extends Controller
      */
     public function index()
     {
-        return Server::all()->sortBy('order')->load("group");
+        if (!Auth::guest() && Auth::user()->hasRole("admin")) {
+            return Server::all()->sortBy('order')->load("group");
+        } else {
+            return Server::whereActive(true)->get()->sortBy('order')->load("group");
+        }
     }
 
     /**

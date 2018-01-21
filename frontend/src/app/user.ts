@@ -62,4 +62,5 @@ export class User {
   public updated_at: string;
 
   public roles: Role[];
+  public roleNames: string[];
 }

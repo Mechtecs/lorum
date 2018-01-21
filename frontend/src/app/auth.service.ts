@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from './user';
+import {Role} from "./role";
 
 @Injectable()
 export class AuthService {
@@ -30,6 +31,7 @@ export class AuthService {
       this.loggedIn = data.loggedIn;
       if (this.loggedIn) {
         this.user = data.userProfile;
+        this.user.roleNames = this.user.roles.map((role: Role) => role.name);
       } else {
         this.user = null;
       }

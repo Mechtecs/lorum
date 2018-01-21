@@ -1,35 +1,44 @@
 <div>
-  <mz-dropdown
-    [id]="'dropdown-userprofile'"
-    [align]="'left'"
-    [constrainWidth]="true"
-    [dropdownButtonId]="'dropdown-userprofile-btn'"
-    [inDuration]="300"
-    [outDuration]="300"
-    [stopPropagation]="true"
-    [belowOrigin]="true"
-    *ngIf="authService.loggedIn"
-  >
-    <mz-dropdown-item><a>One</a></mz-dropdown-item>
-    <mz-dropdown-item><a>Two</a></mz-dropdown-item>
-    <mz-dropdown-divider></mz-dropdown-divider>
-    <mz-dropdown-item (click)="this.authService.logout()"><a>Logout</a></mz-dropdown-item>
-  </mz-dropdown>
+  <mz-sidenav
+    #profileSidenav
+    [id]="'sidenav-user-profile'"
+    [collapseButtonId]="'sidenav-user-profile-btn'"
+    [edge]="'right'"
+    *ngIf="authService.loggedIn">
+    <mz-sidenav-header>
+      <div ngClass="user-view">
+        <img [src]="authService.user.avatarfull" ngClass="circle avatar" />
+        <div ngClass="white-text name">{{authService.user.personaname}}</div>
+      </div>
+    </mz-sidenav-header>
+    <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
+    <mz-sidenav-link>
+      <a href="#">First Link</a>
+    </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+    <mz-sidenav-link [active]="true">
+      <a href="#">Active Link</a>
+    </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+    <mz-sidenav-link (click)="this.authService.logout()">
+      <a>Logout</a>
+    </mz-sidenav-link>
+  </mz-sidenav>
 
   <mz-navbar>
     <a href="#" class="brand-logo">Lorum-2.0</a>
     <mz-navbar-item-container [align]="'right'">
-      <mz-navbar-item>
-        <a href="sass.html">Sass</a>
+      <mz-navbar-item [active]="router.url.startsWith('/servers')">
+        <a routerLink="/servers">Servers</a>
       </mz-navbar-item>
-      <mz-navbar-item>
-        <a routerLink="/test">Components</a>
+      <mz-navbar-item [active]="router.url.startsWith('/forum')">
+        <a routerLink="/forum">Forum</a>
       </mz-navbar-item>
       <mz-navbar-item *ngIf="!authService.loggedIn">
         <a href="/api/auth/steam">Login</a>
       </mz-navbar-item>
-      <mz-navbar-item *ngIf="authService.loggedIn" ngClass="dropdown-trigger" data-target="navbar-user-dropdown">
-        <a id="dropdown-userprofile-btn">{{this.authService.user.personaname}}</a>
+      <mz-navbar-item *ngIf="authService.loggedIn" id="sidenav-user-profile-btn">
+        <a>{{authService.user.personaname}}</a>
       </mz-navbar-item>
     </mz-navbar-item-container>
   </mz-navbar>

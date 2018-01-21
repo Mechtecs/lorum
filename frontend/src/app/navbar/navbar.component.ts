@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { AuthService } from "../auth.service";
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
+import {User} from "../user";
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +12,7 @@ import { AuthService } from "../auth.service";
 })
 export class NavbarComponent {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public router: Router) {
+  }
 
 }
