@@ -11,5 +11,5 @@ export class ServerGroup {
   public updated_at: Date;
 
   // Relationships
-  public servers: Server[];
+  public servers: Server[] = [];
 }
