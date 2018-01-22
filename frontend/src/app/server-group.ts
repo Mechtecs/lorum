@@ -1,7 +1,8 @@
 import {Server} from "./server";
 
 export class ServerGroup {
-  public id: number = -1;
+  private static counter: number = -1;
+  public id: number = ServerGroup.counter--;
   public active: boolean = false;
   public order: number = 255;
   public spoilers: boolean = false;
