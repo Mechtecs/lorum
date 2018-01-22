@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ServerGroup} from "../server-group";
 import {ServerService} from "../server.service";
+import {Server} from "../server";
 
 @Component({
   selector: 'app-server-group-edit',
@@ -28,6 +29,10 @@ export class ServerGroupEditComponent implements OnInit {
 
   public emitChanges(): void {
     this.serverGroupEmitter.next(this.serverGroup);
+  }
+
+  public addServer(): void {
+    this.serverGroup.servers.push(new Server());
   }
 
 }

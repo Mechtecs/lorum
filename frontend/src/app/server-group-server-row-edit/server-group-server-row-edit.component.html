@@ -1,3 +1,40 @@
-<p>
-  server-group-server-row-edit works!
-</p>
+<form novalidate>
+  <div ngClass="section">
+    <h6 *ngIf="server.id < 1">New Server</h6>
+    <h6 *ngIf="server.id > 0">Server "{{server.name}}" (ID: {{server.id}})</h6>
+    <div class="row">
+      <mz-checkbox-container class="col s2">
+        <input mz-checkbox
+               id="serverActive-{{server.id}}"
+               name="serverActive-{{server.id}}"
+               type="checkbox"
+               [label]="'Active'"
+               [(ngModel)]="server.active"
+               (change)="this.emitChanges()"
+        >
+      </mz-checkbox-container>
+      <mz-input-container ngClass="col s8">
+        <input mz-input required
+               id="serverName-{{server.id}}"
+               name="serverName-{{server.id}}"
+               type="text"
+               [label]="'Name'"
+               [(ngModel)]="server.name"
+               (change)="this.emitChanges()"
+        />
+      </mz-input-container>
+      <mz-input-container ngClass="col s2 m4">
+        <input mz-input required
+               id="serverOrder[{{server.id}}]"
+               name="serverOrder[{{server.id}}]"
+               type="number"
+               [min]="0"
+               [max]="255"
+               [label]="'Order'"
+               [(ngModel)]="server.order"
+               (change)="this.emitChanges()"
+        />
+      </mz-input-container>
+    </div>
+  </div>
+</form>

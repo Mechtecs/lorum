@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ServerService} from "../server.service";
 import {ServerGroup} from "../server-group";
 
@@ -9,7 +9,8 @@ import {ServerGroup} from "../server-group";
 })
 export class ServerSettingsPageComponent implements OnInit {
 
-  constructor(public serverService: ServerService) { }
+  constructor(public serverService: ServerService) {
+  }
 
   ngOnInit() {
   }
@@ -20,7 +21,6 @@ export class ServerSettingsPageComponent implements OnInit {
   }
 
   public persist(): void {
-    console.log("persist");
     this.serverService.serverGroups.map((sGroup) => {
       if (sGroup.id > 0) {
         this.serverService.updateGroup(sGroup);
@@ -31,9 +31,7 @@ export class ServerSettingsPageComponent implements OnInit {
   }
 
   public deleteServerGroup(serverGroup: ServerGroup): void {
-    this.serverService.deleteGroup(serverGroup).subscribe((data) => {
-      console.dir(data);
-    });
+    this.serverService.deleteGroup(serverGroup);
   }
 
 }

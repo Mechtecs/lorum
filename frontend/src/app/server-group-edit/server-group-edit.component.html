@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="row">
-      <app-server-group-server-row-edit></app-server-group-server-row-edit>
+      <app-server-group-server-row-edit *ngFor="let server of serverGroup.servers; let i = index" [(server)]="serverGroup.servers[i]"></app-server-group-server-row-edit>
     </div>
   </div>
 </form>
