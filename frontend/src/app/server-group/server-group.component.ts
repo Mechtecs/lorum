@@ -14,6 +14,7 @@ export class ServerGroupComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //$('.collapsible').collapsible();
   }
 
 }

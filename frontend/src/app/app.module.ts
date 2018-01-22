@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   MzButtonModule, MzInputModule, MzDropdownModule, MzNavbarModule, MzSidenavModule,
-  MzIconModule, MzIconMdiModule, MzValidationModule, MzCheckboxModule, MzCollapsibleModule, MzCardModule
+  MzIconModule, MzIconMdiModule, MzValidationModule, MzCheckboxModule, MzCollapsibleModule, MzCardModule, MzToastModule
 } from 'ng2-materialize';
 
 // Services
@@ -56,7 +56,8 @@ import { ServerGroupServerRowEditComponent } from './server-group-server-row-edi
     FormsModule,
     MzCheckboxModule,
     MzCollapsibleModule,
-    MzCardModule
+    MzCardModule,
+    MzToastModule
   ],
   providers: [AuthService, ServerService],
   bootstrap: [AppComponent]

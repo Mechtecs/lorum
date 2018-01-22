@@ -29,8 +29,8 @@
     <div class="row">
       <mz-checkbox-container class="col s2">
         <input mz-checkbox
-               id="groupActive"
-               name="groupActive"
+               id="groupActive-{{serverGroup.id}}"
+               name="groupActive-{{serverGroup.id}}"
                type="checkbox"
                [label]="'Active'"
                [(ngModel)]="serverGroup.active"
@@ -39,8 +39,8 @@
       </mz-checkbox-container>
       <mz-checkbox-container class="col s2">
         <input mz-checkbox
-               id="groupSpoilers"
-               name="groupSpoilers"
+               id="groupSpoilers-{{serverGroup.id}}"
+               name="groupSpoilers-{{serverGroup.id}}"
                type="checkbox"
                [label]="'Spoilers'"
                [(ngModel)]="serverGroup.spoilers"
@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="row">
-      <app-server-group-server-row-edit *ngFor="let server of serverGroup.servers; let i = index" [(server)]="serverGroup.servers[i]"></app-server-group-server-row-edit>
+      <app-server-group-server-row-edit *ngFor="let server of serverGroup.servers; let i = index" [(server)]="serverGroup.servers[i]" (delete)="deleteServer(serverGroup.servers[i])"></app-server-group-server-row-edit>
     </div>
   </div>
 </form>

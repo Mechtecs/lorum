@@ -35,4 +35,8 @@ export class ServerGroupEditComponent implements OnInit {
     this.serverGroup.servers.push(new Server());
   }
 
+  public deleteServer(server: Server): void {
+    this.serverService.deleteServer(server);
+  }
+
 }

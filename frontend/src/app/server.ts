@@ -6,6 +6,7 @@ export class Server {
   public order: number = 255;
   public name: string = "";
   public group: ServerGroup;
+  public server_group_id: number;
   public ip: string = "";
   public port: number = 0;
   public active: boolean = false;

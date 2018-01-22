@@ -23,7 +23,7 @@
                (change)="this.emitChanges()"
         />
       </mz-input-container>
-      <mz-input-container ngClass="col s2 m4">
+      <mz-input-container ngClass="col s1">
         <input mz-input required
                id="serverOrder[{{server.id}}]"
                name="serverOrder[{{server.id}}]"
@@ -32,6 +32,33 @@
                [max]="255"
                [label]="'Order'"
                [(ngModel)]="server.order"
+               (change)="this.emitChanges()"
+        />
+      </mz-input-container>
+      <div class="col s1">
+        <a mz-button [float]="true" (click)="this.delete()" type="button">
+          <i mz-icon-mdi [align]="'right'" [icon]="'delete'"></i>
+        </a>
+      </div>
+      <mz-input-container ngClass="col s8 m6">
+        <input mz-input required
+               id="serverIp-{{server.id}}"
+               name="serverIp-{{server.id}}"
+               type="text"
+               [label]="'Ip'"
+               [(ngModel)]="server.ip"
+               (change)="this.emitChanges()"
+        />
+      </mz-input-container>
+      <mz-input-container ngClass="col s4 m6">
+        <input mz-input required
+               id="serverPort-{{server.id}}"
+               name="serverPort-{{server.id}}"
+               type="number"
+               min="0"
+               max="65535"
+               [label]="'Port'"
+               [(ngModel)]="server.port"
                (change)="this.emitChanges()"
         />
       </mz-input-container>

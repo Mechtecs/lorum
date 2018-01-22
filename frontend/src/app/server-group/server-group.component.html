@@ -1,8 +1,8 @@
 <mz-card>
   <mz-card-title>{{serverGroup.name}}</mz-card-title>
   <mz-card-content>
-    <mz-collapsible>
-      <app-server-group-server-row *ngFor="let serverRow of serverGroup.servers"></app-server-group-server-row>
-    </mz-collapsible>
+    <ul ngClass="collapsible" data-collapisble="accordion">
+      <app-server-group-server-row *ngFor="let server of serverGroup.servers; let i = index" [server]="serverGroup.servers[i]"></app-server-group-server-row>
+    </ul>
   </mz-card-content>
 </mz-card>
