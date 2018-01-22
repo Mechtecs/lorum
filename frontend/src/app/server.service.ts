@@ -102,19 +102,31 @@ export class ServerService {
   }
 
   public deleteServer(server: Server): void {
-    this.http.delete<DeleteResponse>("/api/server/" + server.id).subscribe((data) => {
-      if (data.success) {
-        this.toaster.show("Deleted server '" + server.name + "'", 2000, "green");
-        for (let i = 0; i < this.serverGroups.length; i++) {
-          let index: number = this.serverGroups[i].servers.indexOf(server);
-          if (index > -1) {
-            this.serverGroups[i].servers.splice(index, 1);
+    if (server.id > -1) {
+      this.http.delete<DeleteResponse>("/api/server/" + server.id).subscribe((data) => {
+        if (data.success) {
+          this.toaster.show("Deleted server '" + server.name + "'", 2000, "green");
+          for (let i = 0; i < this.serverGroups.length; i++) {
+            let index: number = this.serverGroups[i].servers.indexOf(server);
+            if (index > -1) {
+              this.serverGroups[i].servers.splice(index, 1);
+            }
           }
+        } else {
+          this.toaster.show("Could not delete server '" + server.name + "'", 2000, "red");
         }
-      } else {
-        this.toaster.show("Could not delete server '" + server.name + "'", 2000, "red");
+      });
+    } else {
+      for (let i = 0; i < this.serverGroups.length; i++) {
+        let index: number = this.serverGroups[i].servers.indexOf(server);
+        if (index > -1) {
+          this.toaster.show("Deleted local server '" + server.name + "'", 2000, "green");
+          this.serverGroups[i].servers.splice(index, 1);
+          return;
+        }
       }
-    });
+      this.toaster.show("Could not delete local server '" + server.name + "'", 2000, "red");
+    }
   }
 
 }
