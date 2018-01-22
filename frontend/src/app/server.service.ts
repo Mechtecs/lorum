@@ -23,9 +23,20 @@ export class ServerService {
     });
   }
 
+  private persistServerGroupServers(serverGroup: ServerGroup): void {
+    serverGroup.servers.map((server) => {
+      if (server.id > 0) {
+        this.updateServer(server);
+      } else {
+        this.createServer(server);
+      }
+    });
+  }
+
   public createGroup(serverGroup: ServerGroup): void {
     this.http.post<ServerGroup>("/api/servergroup", serverGroup).subscribe((sGroup) => {
       serverGroup.id = sGroup.id;
+      this.persistServerGroupServers(serverGroup);
     });
   }
 
@@ -34,11 +45,28 @@ export class ServerService {
   }
 
   public updateGroup(serverGroup: ServerGroup): void {
-
+    this.http.put<ServerGroup>("/api/servergroup/" + serverGroup.id, serverGroup).subscribe((sGroup) => {
+      serverGroup.id = sGroup.id;
+      this.persistServerGroupServers(serverGroup);
+    });
   }
 
-  public deleteGroup(serverGroup: ServerGroup): Observable<Object> {
-    return this.http.delete<any>("/api/servergroup/" + serverGroup.id);
+  public deleteGroup(serverGroup: ServerGroup): void {
+    if (serverGroup.id > -1) {
+      this.http.delete<DeleteResponse>("/api/servergroup/" + serverGroup.id).subscribe((data) => {
+        if (data.success) {
+          let index: number = this.serverGroups.indexOf(serverGroup, 0);
+          if (index > -1) {
+            this.serverGroups.splice(index, 1);
+          }
+        }
+      });
+    } else {
+      let index: number = this.serverGroups.indexOf(serverGroup, 0);
+      if (index > -1) {
+        this.serverGroups.splice(index, 1);
+      }
+    }
   }
 
   public createServer(server: Server): void {
@@ -53,8 +81,13 @@ export class ServerService {
 
   }
 
-  public deleteServer(server: Server): void {
-
+  public deleteServer(server: Server): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>("/api/server/" + server.id);
   }
 
+}
+
+class DeleteResponse {
+  public success: boolean;
+  public id: number;
 }
