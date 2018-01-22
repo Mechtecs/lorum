@@ -41,12 +41,12 @@ Route::group(['prefix' => 'server'], function () {
 // CRUD: ServerGroupController
 Route::group(['prefix' => 'servergroup'], function () {
     Route::get('/', "ServerGroupController@index");
-    Route::get('/{server}', "ServerGroupController@get");
+    Route::get('/{serverGroup}', "ServerGroupController@get");
 
     Route::group(['middleware' => ["role:admin"]], function() {
         Route::post('/', "ServerGroupController@create");
-        Route::put('/{server}', "ServerGroupController@update");
-        Route::delete('/{server}', "ServerGroupController@delete");
+        Route::put('/{serverGroup}', "ServerGroupController@update");
+        Route::delete('/{serverGroup}', "ServerGroupController@delete");
     });
 });
 
