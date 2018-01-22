@@ -1,6 +1,7 @@
 <li>
   <div class="collapsible-header">
-    {{server.name}}
+    <span *ngIf="!server.data.success">{{server.name}}</span>
+    <span *ngIf="server.data.success">{{server.name}} {{server.data.info.Players}} / {{server.data.info.MaxPlayers}}</span>
   </div>
   <div class="collapsible-body">
     {{server.ip}}:{{server.port}}

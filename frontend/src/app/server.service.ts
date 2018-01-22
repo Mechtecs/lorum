@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ServerGroup} from "./server-group";
-import {Server} from "./server";
+import {Server, ServerData} from "./server";
 import {Observable} from "rxjs/Observable";
 import {MzToastService} from "ng2-materialize";
 import {AuthService} from "./auth.service";
@@ -25,6 +25,19 @@ export class ServerService {
       if (this.authService.loggedIn && this.authService.user.roleNames.indexOf("admin") > -1) {
         this.toaster.show("Successfully loaded server groups", 2000, "green");
       }
+      this.loadServerData();
+    });
+  }
+
+  public loadServerData(): void {
+    this.serverGroups.map((serverGroup: ServerGroup) => {
+      serverGroup.servers.map((server: Server) => {
+        if (server.id > -1) {
+          this.http.get<ServerData>("/api/server/" + server.id + "/query").subscribe((data) => {
+            server.data = data;
+          });
+        }
+      });
     });
   }
 
