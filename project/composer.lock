@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "75016236e85daa057055f0e3ccae9030",
+    "content-hash": "f0a03496945b3b6c61b084c19222791b",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2867,6 +2867,58 @@
             "time": "2016-09-01T10:05:43+00:00"
         },
         {
+            "name": "xpaw/php-source-query-class",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xPaw/PHP-Source-Query.git",
+                "reference": "5597c4c17f8f33ebf49cc4fad1ce9e1a66bf8434"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xPaw/PHP-Source-Query/zipball/5597c4c17f8f33ebf49cc4fad1ce9e1a66bf8434",
+                "reference": "5597c4c17f8f33ebf49cc4fad1ce9e1a66bf8434",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "xPaw\\SourceQuery\\": "SourceQuery/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Djundik",
+                    "email": "sourcequery@xpaw.me"
+                }
+            ],
+            "description": "PHP library to query and send RCON commands to servers based on \"Source Engine Query\" protocol",
+            "homepage": "https://github.com/xPaw/PHP-Source-Query",
+            "keywords": [
+                "ark",
+                "counter-strike",
+                "csgo",
+                "gmod",
+                "minecraft",
+                "rcon",
+                "rust",
+                "starbound",
+                "team fortress"
+            ],
+            "time": "2018-01-17T21:52:34+00:00"
+        },
+        {
             "name": "zizaco/entrust",
             "version": "5.2.x-dev",
             "source": {
@@ -4664,6 +4716,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "xpaw/php-source-query-class": 20,
         "zizaco/entrust": 20
     },
     "prefer-stable": false,

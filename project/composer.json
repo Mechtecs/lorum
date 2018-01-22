@@ -11,6 +11,7 @@
         "invisnik/laravel-steam-auth": "3.*",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "xpaw/php-source-query-class": "dev-master",
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {

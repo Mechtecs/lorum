@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use xPaw\SourceQuery\SourceQuery;
 
 class ServerController extends Controller
 {
@@ -70,5 +71,27 @@ class ServerController extends Controller
         } else {
             return ["success" => false, "id" => $id];
         }
+    }
+
+  /**
+   * Query and return server data
+   * @param Server $server
+   */
+    public function query(Server $server) {
+      $query = new SourceQuery();
+      try {
+        $query->Connect($server->ip, $server->port, 1, SourceQuery::SOURCE);
+        $data = [
+          "success" => true,
+          "info" => $query->GetInfo(),
+          "players" => $query->GetPlayers(),
+        ];
+      } catch (\Exception $exception) {
+        return ["success" => false, "error" => $exception->getMessage()];
+      } finally {
+        $query->disconnect();
+      }
+
+      return $data;
     }
 }

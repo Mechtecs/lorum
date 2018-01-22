@@ -30,6 +30,7 @@ Route::group(['prefix' => 'user'], function () {
 Route::group(['prefix' => 'server'], function () {
     Route::get('/', "ServerController@index");
     Route::get('/{server}', "ServerController@get");
+    Route::get('/{server}/query', "ServerController@query");
 
     Route::group(['middleware' => ["role:admin"]], function() {
         Route::post('/', "ServerController@create");
