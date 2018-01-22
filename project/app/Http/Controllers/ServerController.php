@@ -64,10 +64,11 @@ class ServerController extends Controller
      */
     public function delete(Server $server)
     {
+        $id = $server->id;
         if ($server->delete()) {
-            return ["success" => true];
+            return ["success" => true, "id" => $id];
         } else {
-            return ["success" => false];
+            return ["success" => false, "id" => $id];
         }
     }
 }
