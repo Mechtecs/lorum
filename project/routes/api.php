@@ -26,6 +26,14 @@ Route::group(['prefix' => 'user'], function () {
     Route::delete('/{user}', ["middleware" => ["role:admin"], "uses" => "UserController@delete"]);
 });
 
+// CRUD: RoleController
+Route::group(['prefix' => 'role', 'middleware' => ['role:admin']], function () {
+    Route::get('/', 'RoleController@index');
+    Route::post('/', 'RoleController@create');
+    Route::put('/{role}', 'RoleController@update');
+    Route::delete('/{role}', 'RoleController@delete');
+});
+
 // CRUD: ServerController
 Route::group(['prefix' => 'server'], function () {
     Route::get('/', "ServerController@index");
