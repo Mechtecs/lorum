@@ -7,24 +7,32 @@
     *ngIf="authService.loggedIn">
     <mz-sidenav-header>
       <div ngClass="user-view">
-        <img [src]="authService.user.avatarfull" ngClass="circle avatar" />
+        <img [src]="authService.user.avatarfull" ngClass="circle avatar"/>
         <div ngClass="white-text name">{{authService.user.personaname}}</div>
       </div>
     </mz-sidenav-header>
-    <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
+    <mz-sidenav-subheader>Profile</mz-sidenav-subheader>
     <mz-sidenav-link>
       <a href="#">First Link</a>
     </mz-sidenav-link>
-    <mz-sidenav-divider></mz-sidenav-divider>
-    <mz-sidenav-link [active]="true">
-      <a href="#">Active Link</a>
-    </mz-sidenav-link>
+    <ng-container *ngIf="authService.loggedIn && authService.user.roleNames.indexOf('admin') > -1">
+      <mz-sidenav-divider></mz-sidenav-divider>
+      <mz-sidenav-subheader>Administration</mz-sidenav-subheader>
+      <mz-sidenav-link [active]="router.url.startsWith('/admin/general')"
+                       (click)="profileSidenav.opened = !profileSidenav.opened">
+        <a routerLink="/admin/general">General Settings</a>
+      </mz-sidenav-link>
+      <mz-sidenav-link [active]="router.url.startsWith('/admin/users')"
+                       (click)="profileSidenav.opened = !profileSidenav.opened">
+        <a routerLink="/admin/users">User Management</a>
+      </mz-sidenav-link>
+    </ng-container>
     <mz-sidenav-divider></mz-sidenav-divider>
     <mz-sidenav-link (click)="this.authService.logout()">
       <a>Logout</a>
     </mz-sidenav-link>
   </mz-sidenav>
-
+  <!--
   <mz-sidenav
     [id]="'sidenav-mobile'"
     [collapseButtonId]="'sidenav-mobile-btn'">
@@ -41,9 +49,10 @@
       <a>{{authService.user.personaname}}</a>
     </mz-sidenav-link>
   </mz-sidenav>
+  -->
 
   <mz-navbar>
-    <a href="#" class="brand-logo" id="sidenav-mobile-btn">Lorum-2.0</a>
+    <a class="brand-logo" id="sidenav-mobile-btn">Lorum-2.0</a>
     <mz-navbar-item-container [align]="'right'">
       <mz-navbar-item [active]="router.url.startsWith('/servers')">
         <a routerLink="/servers">Servers</a>

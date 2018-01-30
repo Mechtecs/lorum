@@ -1,0 +1,8 @@
+<mz-collection>
+  <mz-collection-item [avatar]="true" *ngFor="let user of users">
+    <img src="{{user.avatarfull}}" ngClass="circle responsive-img">
+    <div class="title">{{user.personaname}}</div>
+    <div>{{user.roleNames.join(", ")}}</div>
+    <a mz-secondary-content routerLink="/admin/users/{{user.steamid}}"><i mz-icon-mdi [icon]="'send'"></i></a>
+  </mz-collection-item>
+</mz-collection>

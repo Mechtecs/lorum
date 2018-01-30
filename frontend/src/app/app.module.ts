@@ -1,31 +1,42 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
-import { environment } from '../environments/environment';
-import { ServerPageComponent } from './server-page/server-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
-
+import {environment} from '../environments/environment';
+import {ServerPageComponent} from './server-page/server-page.component';
+import {NavbarComponent} from './navbar/navbar.component';
 // Modules
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
 import {
-  MzButtonModule, MzInputModule, MzDropdownModule, MzNavbarModule, MzSidenavModule,
-  MzIconModule, MzIconMdiModule, MzValidationModule, MzCheckboxModule, MzCollapsibleModule, MzCardModule, MzToastModule
+  MzButtonModule,
+  MzCardModule,
+  MzCheckboxModule,
+  MzCollapsibleModule,
+  MzCollectionModule,
+  MzDropdownModule,
+  MzIconMdiModule,
+  MzIconModule,
+  MzInputModule,
+  MzNavbarModule,
+  MzSidenavModule,
+  MzToastModule,
+  MzValidationModule
 } from 'ng2-materialize';
-
 // Services
-import { AuthService } from './auth.service';
+import {AuthService} from './auth.service';
 import {ServerService} from "./server.service";
-import { ServerSettingsPageComponent } from './server-settings-page/server-settings-page.component';
-import { ServerGroupEditComponent } from './server-group-edit/server-group-edit.component';
+import {ServerSettingsPageComponent} from './server-settings-page/server-settings-page.component';
+import {ServerGroupEditComponent} from './server-group-edit/server-group-edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ServerGroupComponent } from './server-group/server-group.component';
-import { ServerGroupServerRowComponent } from './server-group-server-row/server-group-server-row.component';
-import { ServerGroupServerRowEditComponent } from './server-group-server-row-edit/server-group-server-row-edit.component';
+import {ServerGroupComponent} from './server-group/server-group.component';
+import {ServerGroupServerRowComponent} from './server-group-server-row/server-group-server-row.component';
+import {ServerGroupServerRowEditComponent} from './server-group-server-row-edit/server-group-server-row-edit.component';
+import {UserService} from "./user.service";
+import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -36,12 +47,12 @@ import { ServerGroupServerRowEditComponent } from './server-group-server-row-edi
     ServerGroupEditComponent,
     ServerGroupComponent,
     ServerGroupServerRowComponent,
-    ServerGroupServerRowEditComponent
+    ServerGroupServerRowEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     HttpClientModule,
     BrowserAnimationsModule,
     MzButtonModule,
@@ -57,9 +68,12 @@ import { ServerGroupServerRowEditComponent } from './server-group-server-row-edi
     MzCheckboxModule,
     MzCollapsibleModule,
     MzCardModule,
-    MzToastModule
+    MzToastModule,
+    MzCollectionModule,
+    AdminModule
   ],
-  providers: [AuthService, ServerService],
+  providers: [AuthService, ServerService, UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

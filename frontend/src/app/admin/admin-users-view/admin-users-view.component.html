@@ -1,0 +1,35 @@
+<p>
+  <ng-container *ngIf="user === null">
+    <mz-progress></mz-progress>
+  </ng-container>
+  <ng-container *ngIf="user">
+    <form novalidate>
+      <div class="section">
+        <div class="row">
+          <div class="col m4 s12">
+            <img src="{{user.avatarfull}}" class="circle">
+          </div>
+          <div class="col m8 s12">
+            <h2>{{user.personaname}}</h2>
+            <h3>SteamID: {{user.steamid}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h3>Role:</h3>
+        <mz-select-container>
+          <select mz-select id="user-role-select" [label]="Role" [(ngModel)]="currentRole" name="user-role-select"
+                  title="">
+            <option *ngFor="let role of roles" [ngValue]="role" [selected]="role.id === currentRole.id">
+              {{role.display_name}} ({{role.name}})
+            </option>
+          </select>
+        </mz-select-container>
+        <button mz-button (click)="updateRole()">Update</button>
+      </div>
+      <div class="section">
+        <h3>Bans:</h3>
+      </div>
+    </form>
+  </ng-container>
+</p>
