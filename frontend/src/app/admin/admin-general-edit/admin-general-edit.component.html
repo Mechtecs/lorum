@@ -1,0 +1,16 @@
+<form novalidate>
+  <div ngClass="section">
+    <h6>{{setting.key}}</h6>
+    <div class="row">
+      <mz-input-container class="col s12">
+        <input mz-input required
+               id="setting-{{setting.id}}-{{setting.key}}"
+               name="setting-{{setting.id}}-{{setting.key}}"
+               type="text"
+               [(ngModel)]="setting.value"
+               (change)="emitChanges()"
+        />
+      </mz-input-container>
+    </div>
+  </div>
+</form>
