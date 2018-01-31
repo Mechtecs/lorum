@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use Invisnik\LaravelSteamAuth\SteamAuth;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
+use Invisnik\LaravelSteamAuth\SteamAuth;
 
 class AuthController extends Controller {
     /**
@@ -102,9 +102,13 @@ class AuthController extends Controller {
 
         $user->saveOrFail();
 
-        if ($newUser && User::count() === 1) {
-            $adminRole = Role::whereName('admin')->first();
-            $user->attachRole($adminRole);
+        if ($newUser) {
+            if (User::count() === 1) {
+                $newRole = Role::whereName('admin')->first();
+            } else {
+                $newRole = Role::whereName('player')->first();
+            }
+            $user->attachRole($newRole);
         }
 
         return $user;

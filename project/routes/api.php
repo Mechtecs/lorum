@@ -17,6 +17,12 @@ Route::get('/', function (Request $request) {
     return ["up" => true];
 });
 
+// CRUD: SettingController
+Route::group(['prefix' => 'setting'], function () {
+    Route::get('/', "SettingController@index");
+    Route::put('/{setting}', ["middleware" => ["role:admin"], "uses" => "SettingController@update"]);
+});
+
 // CRUD: UserController
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', "UserController@index");

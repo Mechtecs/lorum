@@ -2,11 +2,19 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AdminGeneralComponent} from "./admin-general/admin-general.component";
 import {AdminUsersComponent} from "./admin-users/admin-users.component";
-import {MzButtonModule, MzCollectionModule, MzIconMdiModule, MzProgressModule, MzSelectModule} from "ng2-materialize";
+import {
+  MzButtonModule,
+  MzCollectionModule,
+  MzIconMdiModule,
+  MzInputModule,
+  MzProgressModule,
+  MzSelectModule
+} from "ng2-materialize";
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 import {AdminUsersViewComponent} from './admin-users-view/admin-users-view.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AdminGeneralEditComponent} from './admin-general-edit/admin-general-edit.component';
 
 @NgModule({
   imports: [
@@ -19,12 +27,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     FormsModule,
     ReactiveFormsModule,
     MzSelectModule,
-    MzButtonModule
+    MzButtonModule,
+    MzInputModule
   ],
   declarations: [
     AdminGeneralComponent,
     AdminUsersComponent,
-    AdminUsersViewComponent
+    AdminUsersViewComponent,
+    AdminGeneralEditComponent
   ]
 })
 export class AdminModule {

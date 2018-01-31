@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
-import {User} from "../user";
+import {SettingService} from "../setting.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +11,7 @@ import {User} from "../user";
 })
 export class NavbarComponent {
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService, public router: Router, public settingService: SettingService) {
   }
 
 }

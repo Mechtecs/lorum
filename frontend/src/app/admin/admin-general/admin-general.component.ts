@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {SettingService} from "../../setting.service";
 
 @Component({
   selector: 'app-admin-general',
@@ -7,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdminGeneralComponent implements OnInit {
 
-  constructor() {
+  constructor(public settingService: SettingService) {
   }
 
   ngOnInit() {

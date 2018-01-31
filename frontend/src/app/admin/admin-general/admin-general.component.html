@@ -1,3 +1,10 @@
-<p>
-  admin-general works!
-</p>
+<div>
+  <h2>Edit general app settings</h2>
+  <div class="row">
+    <app-admin-general-edit class="col s6 m12" *ngFor="let setting of settingService.settings; let i = index"
+                            [(setting)]="settingService.settings[i]"></app-admin-general-edit>
+  </div>
+  <div>
+    <button mz-button (click)="settingService.persistSettings()">Persist Changes</button>
+  </div>
+</div>

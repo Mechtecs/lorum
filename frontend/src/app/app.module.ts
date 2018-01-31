@@ -37,6 +37,7 @@ import {ServerGroupServerRowComponent} from './server-group-server-row/server-gr
 import {ServerGroupServerRowEditComponent} from './server-group-server-row-edit/server-group-server-row-edit.component';
 import {UserService} from "./user.service";
 import {AdminModule} from "./admin/admin.module";
+import {SettingService} from "./setting.service";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import {AdminModule} from "./admin/admin.module";
     MzCollectionModule,
     AdminModule
   ],
-  providers: [AuthService, ServerService, UserService],
+  providers: [AuthService, ServerService, UserService, SettingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
