@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ServerGroup} from "../server-group";
+import {DomSanitizer} from "@angular/platform-browser";
+import {Server} from "../server";
 
 @Component({
   selector: 'app-server-group',
@@ -11,10 +13,18 @@ export class ServerGroupComponent implements OnInit {
   @Input()
   public serverGroup: ServerGroup;
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     //$('.collapsible').collapsible();
   }
 
+  sanitizeUrl(s: string) {
+    // TODO: Will forget; find better solution ;)
+    return this.sanitizer.bypassSecurityTrustUrl(s);
+  }
+
+  getGServerUrl(server: Server) {
+    return this.sanitizeUrl("steam://connect/" + server.ip + ":" + server.port);
+  }
 }

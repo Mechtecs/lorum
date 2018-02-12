@@ -1,8 +1,25 @@
-<mz-card>
-  <mz-card-title>{{serverGroup.name}}</mz-card-title>
-  <mz-card-content>
-    <ul ngClass="collapsible" data-collapisble="accordion">
-      <app-server-group-server-row *ngFor="let server of serverGroup.servers; let i = index" [server]="serverGroup.servers[i]"></app-server-group-server-row>
-    </ul>
-  </mz-card-content>
-</mz-card>
+<mz-collection>
+  <mz-collection-header><h4>{{serverGroup.name}}</h4></mz-collection-header>
+  <table class="responsive-table">
+    <tbody>
+    <tr width="100%" *ngFor="let server of serverGroup.servers">
+      <ng-container *ngIf="server && server.data">
+        <td width="30%">
+          <span *ngIf="server.data.success">{{server.name}}</span>
+        </td>
+        <td width="20%">
+          <i mz-icon-mdi [icon]="'map-marker'"></i>
+          <span *ngIf="server.data.success">{{server.data.info.Map}}</span>
+        </td>
+        <td width="25%">
+          <i mz-icon-mdi [icon]="'account'"></i>
+          <span *ngIf="server.data.success">{{server.data.info.Players}} / {{server.data.info.MaxPlayers}}</span>
+        </td>
+        <td width="25%">
+          <a mz-button *ngIf="server && server.ip" [href]="getGServerUrl(server)">Connect</a>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</mz-collection>

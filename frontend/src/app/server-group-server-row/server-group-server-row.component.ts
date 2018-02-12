@@ -16,4 +16,7 @@ export class ServerGroupServerRowComponent implements OnInit {
   ngOnInit() {
   }
 
+  calculateWidth() {
+    return ((this.server.data.info.Players / this.server.data.info.MaxPlayers)*100).toString() + "%";
+  }
 }
